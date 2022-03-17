@@ -1,0 +1,52 @@
+List of 50 Kentucky Attractions:
+Needed items- Name, Price, Location, Age, Type, Outdoors or Not, Address, Additional Info
+1. Churchill Downs, Pricey, Louisville, 100+, Attraction, Sort of, 700 Central Ave; Lousville, Churchill Downs is the site of Kentuckies prestigious Kentucky Derby, as well as several other notable horse races as well. Constructed in 1875 by Meriwether Lewis Clark, this racetrack has acted as a heart of Kentuckian tradition for more than a century.
+2. Mammoth Cave, Cheap, Central Kentucky, 100+, Park, Yes, 1 Mammoth Cave Parkway, Mammoth Cave is a massive network of caves underneath much of Kentucky, and is one of the largest cave networks in the world. Kentucky residents have been exploring it for more than 200 years, and have found fossils, many unique species, and lots of limestone.
+3. Kentucky Capitol Building, Free, Frankfort, 100+, Government, No, 700 Capital Avenue; Frankfort, Dedicated in 1910, this iteration of the Kentucky Capitol Building stands as the center of state lawmaking. The building was funded with Civil War reparations, and didn't make consideration for parking as cars were seen as a fad when the building was under construction.
+4. My Old Kentucky Home State Park, Cheap, Central Kentucky, Park, Yes, 501 E. Stephen Foster Ave; Bardstown, The farm that inspired the imagery in Stephen Collins Foster's famous song, “My Old Kentucky Home, Good-Night!” is Kentucky's most famous and beloved historic site. Built between 1812 and 1818, the three-story house originally named, "Federal Hill," by its first owner Judge John Rowan became Kentucky's first historic shrine on July 4th, 1923.
+5. Battle of Dutton's Hill Monument, Free, Southern Kentucky, Historic, Yes, Old Crab Orchard Rd. 1 mi. N of Jct. of KY 39 and KY 80; Somerset, Today the battlefield of Dutton's Hill is on private property. On July 17, 1997, the Battle of Dutton's Hill Monument was one of sixty-one different monuments related to the Civil War in Kentucky placed on the National Register of Historic Places. The 6' 2" marble obelisk marks a mass grave of Confederate casualties from the campaign, their names lost to history for 143 years.
+6. Cumberland Falls State Resort Park, Free, Eastern Kentucky, Park, Yes,
+7. Carter Caves State Resort Park, Free, Eastern Kentucky, Park, Yes,
+8. Fort Knox, Free, Central Kentucky, Government, No, 
+9. Kentucky Kingdom and Hurricane Bay, Pricey, Louisville, Attraction, Sort of, 
+10. John James Audubon State Park, Expensive, Western Kentucky, Park, Sort of,
+11. Kenlake State Resort Park, Free, Western Kentucky, Park, Yes,
+12. KFC Yum! Center, Pricey, Louisville, Attraction, No,
+13. Lousville Slugger Museum & Factory, Cheap, Louisville, Attraction, No,
+14. Kentucky Derby Museum, Cheap, Louisville, Attraction, No,
+15. Muhammad Ali Center, Cheap, Louisville, Attraction, No,
+16. Dinosaur World, Cheap, Southern Kentucky, Attraction, Sort of,
+17. Kentucky Science Center, Cheap, Louisville, Other, No,
+18. Ark Encounter, Pricey, Northern Kentucky, Other, No,
+19. Lake Barkley State Resort Park, Free, Western Kentucky, Park, Yes,
+20. Lake Malone State Park, Free, Western Kentucky, Park, Yes,
+21. Natural Bridge State Resort Park, Free, Southern Kentucky, Park, Yes,
+22. Perryville Battlefield State Historic Site, Free, Central Kentucky, Historic, Yes,
+23. 
+24. 
+25. 
+26. 
+27. 
+28. 
+29. 
+30. 
+31. 
+32. 
+33. 
+34. 
+35. 
+36. 
+37. 
+38. 
+39. 
+40. 
+41. 
+42. 
+43. 
+44. 
+45. 
+46. 
+47. 
+48. 
+49. 
+50. 
