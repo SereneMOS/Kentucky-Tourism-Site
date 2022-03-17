@@ -261,13 +261,15 @@
         <div id="outermost-div-2">
 
         </div>
+        <!--
         <div id="main-div-3">
             <p id="picture-heading">Picture</p>
             <img id="test-image" src="baby2.jpg">
         </div>
         <div id="main-div-6">
             <p id="map-heading">Map</p>
-        </div>
+        </div> 
+        -->
         <!--
         <div id="main-div-4">
             <p>
@@ -310,41 +312,64 @@
     <script>
        (function(){					
 			// contoller
-			var c = this;							
+			var c = this;
+            c.typeOptions = ko.observableArray([]);
+			c.typeSelected = ko.observable();
+			c.activityOptions = ko.observableArray([]);
+			c.activitySelected = ko.observable();
+			c.requirementOptions = ko.observableArray([]);
+			c.requirementSelected = ko.observable();							
 			c.locations = ko.observableArray([]);
 			c.onlyShowFreeLocations = ko.observable(false);
-			c.filteredLocations = ko.computed({
-				read:function(){ 
-					// use observables to start tracking
-					var locations = c.locations();
-					var onlyShowFree = c.onlyShowFreeLocations();
-					// filter locations
-					var filteredLocations = locations.filter(function(l){						
-						if(onlyShowFree===true)
-							if(l.price > 0) return false; // remove location if not free
-						return true; // we want this location
-					});
-					return filteredLocations;
-				}				
-			});		
+            var hasOneMatchingItem = function(itemA, itemListB){
+				if(itemListB.some(function(itemB){ return itemA == itemB; }))
+					return true;
+				return false;
+			};
+
+			c.filter = function(){ 
+				var filteredLocations = c.locations().filter(function(l){						
+					if(c.onlyShowFreeLocations()===true) {
+						if(l.price > 0) return false; // remove location if not free
+					}
+					if(c.typeSelected()!='-') {
+						if(!hasOneMatchingItem(c.typeSelected(), l.types)) return false;
+					}				
+					if(c.requirementSelected()!='-') {
+						if(!hasOneMatchingItem(c.requirementSelected(), l.requirements)) return false;
+					}				
+					if(c.activitySelected()!='-') {
+						if(!hasOneMatchingItem(c.activitySelected(), l.activities)) return false;
+					}				
+					
+					return true; // we want this location
+				});
+				c.filteredLocations(filteredLocations);
+			};	
 			
 			// data models
-			var locationModel = function(name, price, location, type, age, outdoors){
+			var locationModel = function(name, price, location, types, requirements, activities){
 				this.name = name;
 				this.price = price;
 				this.location = location;
-                this.type = type;
-                this.age = age;
-                this.outdoors = outdoors;
+				this.types = types;
+				this.requirements = requirements;
+				this.activities = activities;
 				// can add other functionality or observables here
 			};
 			
 			// data
+			c.activityOptions(['-', 'Socializing','Physical', 'Mental', 'Fine motor skills']);
+			c.requirementOptions(['-', 'Have legs','Not be a cucumber', 'Have arms']);
+			c.typeOptions(['-','Indoor','Outdoor']);
 			c.locations([
-				new locationModel('Churchill ','Pricey','Louisville','Attraction','100+','Sort of'),
-				new locationModel('Axe play',30,'2004 N Mulberry St, Elizabethtown, KY 42701'),
-				new locationModel('Freeman lake running trails',0,'1921-1999 Ring Rd, Elizabethtown, KY 42701'),
-				new locationModel('Hard Knox games',0,'5571 N Dixie Hwy, Elizabethtown, KY 42701'),
+				new locationModel('Towne mall',0,'1704 N Dixie Hwy, Elizabethtown, KY 42701',['Indoor'],[],['Socializing']),
+				new locationModel('Axe play',30,'2004 N Mulberry St, Elizabethtown, KY 42701',['Indoor'],['Have arms'],['Socializing', 'Physical', 'Fine motor skills']),
+				new locationModel('Freeman lake running trails',0,'1921-1999 Ring Rd, Elizabethtown, KY 42701',['Outdoor'],['Have legs'],['Physical']),
+				new locationModel('Hard Knox games',0,'5571 N Dixie Hwy, Elizabethtown, KY 42701',['Indoor'],['Not be a cucumber'],['Socializing', 'Mental', 'Fine motor skills']),
+				new locationModel('The Cornhole Palace',20,'421 E Dixie Ave #102, Elizabethtown, KY 42701',['Indoor'],['Have arms'],['Socializing', 'Fine motor skills']),
+				new locationModel('Vibe Coffee',5,'34 Public Square, Elizabethtown, KY 42701',['Indoor'],['Not be a cucumber'],['Socializing', 'Mental']),
+				new locationModel('History Museum',10,'201 W Dixie Ave, Elizabethtown, KY 42701',['Indoor'],[],['Mental']),
 			]);
 			
 			// page binding
