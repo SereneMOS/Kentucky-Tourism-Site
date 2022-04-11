@@ -69,6 +69,7 @@
             height: 42.4%;
             padding-left: 7px;
             border-radius: 10px;
+            overflow: auto;
         }
         #main-div-3 {
             border-style: solid;
@@ -177,65 +178,29 @@
 </head>
 <body>
         <h1 id="banner">Kentucky Tourism Finder - Search for places across the Bluegrass to visit!</h1>
-    </div>
     <div id="outermost-div">
         <div id="main-div-1">
-            <h2 class="top-heading
-            
-            ">Please select which filters to sort by:</h2>
+            <h2 class="top-heading">Please select which filters to sort by:</h2>
             <label for="price">Price:</label>
-            <select name="price" id="price">
-                <option value="-">-</option>
-                <option value="free">Free</option>
-                <option value="cheap">Cheap</option>
-                <option value="pricey" data-bind="pricey">Pricey</option>
-                <option value="expensive">Expensive</option>
+            <select name="price" id="price" data-bind="options: priceOptions, value: priceSelected">
             </select><br>
             <label for="location">Location:</label>
-            <select name="location" id="price">
-                <option value="-">-</option>
-                <option value="louisville">Louisville</option>
-                <option value="frankfort">Frankfort</option>
-                <option value="east">Eastern Kentucky</option>
-                <option value="west">Western Kentucky</option>
-                <option value="south">Southern Kentucky</option>
-                <option value="north">Northern Kentucky</option>
-                <option value="central">Central Kentucky</option>
+            <select name="location" id="price" data-bind="options: locationOptions, value: locationSelected">
             </select><br>
             <label for="type">Type:</label>
-            <select name="type" id="type">
-                <option value="-">-</option>
-                <option value="park">Park</option>
-                <option value="gov">Government</option>
-                <option value="food">Restaurant</option>
-                <option value="landmark">Landmark</option>
-                <option value="attraction">Attraction</option>
-                <option value="historic">Historic</option>
-                <option value="other">Other</option>
+            <select name="type" id="type" data-bind="options: typeOptions, value: typeSelected">
             </select><br>
             <label for="age">Age:</label>
-            <select name="age" id="age">
-                <option value="-">-</option>
-                <option value="1y">1 Year</option>
-                <option value="5y">5 Years</option>
-                <option value="10y">10 Years</option>
-                <option value="20y">20 Years</option>
-                <option value="50y">50 Years</option>
-                <option value="100y">100 years</option>
-                <option value="100+y">100+ years</option>
+            <select name="age" id="age" data-bind="options: ageOptions, value: ageSelected">
             </select><br>
             <label for="outdoors">Outdoors:</label>
-            <select name="outdoors" id="outdoors">
-                <option value="-">-</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
-                <option value="sortof">Sort of</option>
+            <select name="outdoors" id="outdoors" data-bind="options: outdoorsOptions, value: outdoorsSelected">
             </select> <br>
-            <button id="search-button">Search</button>
+            <button id="search-button" data-bind="click: filter">Search</button>
         </div>
         <div id="main-div-2">
-            <h2 class="top-heading">Filter Results</h2>
-            <div id="content">
+            <h2 class="top-heading">Filtered Results</h2>
+            <div>
                 <table>
                     <tr>
                         <th>Name</th>
@@ -248,7 +213,7 @@
                     <tbody data-bind="foreach: filteredLocations">
                     <tr>
                         <td data-bind="text:name"></td>
-                        <td><span data-bind="text:price"></span></td>
+                        <td data-bind="text:price"></td>
                         <td data-bind="text:location"></td>
                         <td data-bind="text:type"></td>
                         <td data-bind="text:age"></td>
@@ -261,44 +226,7 @@
         <div id="outermost-div-2">
 
         </div>
-        <!--
-        <div id="main-div-3">
-            <p id="picture-heading">Picture</p>
-            <img id="test-image" src="baby2.jpg">
-        </div>
-        <div id="main-div-6">
-            <p id="map-heading">Map</p>
-        </div> 
-        -->
-        <!--
-        <div id="main-div-4">
-            <p>
-                <strong><p class="top-heading">Additional Information:</p></strong>Lorem ipsum dolor sit amet, 
-                consectetur adipiscing elit. Mauris a vehicula lacus, ut 
-                fringilla arcu. Donec leo lectus, accumsan eget rhoncus eu, 
-                blandit id tellus. Praesent sollicitudin suscipit lacus ac 
-                aliquam. Quisque maximus porta metus, in sagittis. 
-                Ut lacinia ligula ac lorem feugiat luctus. Nulla eget enim scelerisque 
-                Lorem ipsum dolor sit amet, 
-                consectetur adipiscing elit. Mauris a vehicula lacus, ut 
-                fringilla arcu. Donec leo lectus, accumsan eget rhoncus eu, 
-                blandit id tellus. Praesent sollicitudin suscipit lacus ac 
-                aliquam. Quisque maximus porta metus, in sagittis. 
-                Ut lacinia ligula ac lorem feugiat luctus. Nulla eget enim scelerisque 
-                um dolor sit amet, 
-                consectetur adipiscing elit. Mauris a vehicula lacus, ut 
-                fringilla arcu. Donec leo lectus, accumsan eget rhoncus eu, 
-                blandit id tellus. Praesent sollicitudin suscipit lacus ac 
-                aliquam. Quisque maximus porta metus,
-                um dolor sit amet, 
-                consectetur adipiscing elit. Mauris a vehicula lacus, ut 
-                fringilla arcu. Donec leo lectus, accumsan eget rhoncus eu, 
-                blandit id tellus. Praesent sollicitudin suscipit lacus ac 
-                aliquam. Quisque maximus porta metus,
-            </p>
-        </div>
-
-    -->
+        
 
         <div id="side-bar-div">
 
@@ -306,7 +234,6 @@
 
         <div id="main-div-5"></div>
 
-        </div>
     </div>
     
     <script>
@@ -315,65 +242,76 @@
 			var c = this;
             c.typeOptions = ko.observableArray([]);
 			c.typeSelected = ko.observable();
-			c.activityOptions = ko.observableArray([]);
-			c.activitySelected = ko.observable();
-			c.requirementOptions = ko.observableArray([]);
-			c.requirementSelected = ko.observable();							
+			c.ageOptions = ko.observableArray([]);
+			c.ageSelected = ko.observable();
+			c.locationOptions = ko.observableArray([]);
+			c.locationSelected = ko.observable();
+            c.priceOptions = ko.observableArray([]);
+            c.priceSelected = ko.observable();
+            c.outdoorsOptions = ko.observableArray([]);
+            c.outdoorsSelected = ko.observable();
+            
 			c.locations = ko.observableArray([]);
-			c.onlyShowFreeLocations = ko.observable(false);
+            c.filteredLocations = ko.observableArray([]);
             var hasOneMatchingItem = function(itemA, itemListB){
 				if(itemListB.some(function(itemB){ return itemA == itemB; }))
 					return true;
 				return false;
 			};
-
+            
 			c.filter = function(){ 
-				var filteredLocations = c.locations().filter(function(l){						
-					if(c.onlyShowFreeLocations()===true) {
-						if(l.price > 0) return false; // remove location if not free
-					}
+				var filteredLocations = c.locations().filter(function(l){	
 					if(c.typeSelected()!='-') {
 						if(!hasOneMatchingItem(c.typeSelected(), l.types)) return false;
+					}
+					if(c.ageSelected()!='-') {
+						if(!hasOneMatchingItem(c.ageSelected(), l.age)) return false;
 					}				
-					if(c.requirementSelected()!='-') {
-						if(!hasOneMatchingItem(c.requirementSelected(), l.requirements)) return false;
-					}				
-					if(c.activitySelected()!='-') {
-						if(!hasOneMatchingItem(c.activitySelected(), l.activities)) return false;
-					}				
-					
+					if(c.locationSelected()!='-') {
+						if(!hasOneMatchingItem(c.locationSelected(), l.location)) return false;
+					}		
+                    if(c.priceSelected()!='-') {
+                        if(!hasOneMatchingItem(c.priceSelected(), l.price)) return false;
+                    }		
+					if (c.outdoorsSelected()!='-') {
+                        if(!hasOneMatchingItem(c.outdoorsSelected(), l.outdoors)) return false;
+                    }
 					return true; // we want this location
 				});
 				c.filteredLocations(filteredLocations);
 			};	
 			
 			// data models
-			var locationModel = function(name, price, location, types, requirements, activities){
+			var locationModel = function(name, price, location, type, age, outdoors){
 				this.name = name;
 				this.price = price;
 				this.location = location;
-				this.types = types;
-				this.requirements = requirements;
-				this.activities = activities;
+				this.type = type;
+				this.age = age;
+				this.outdoors = outdoors;
 				// can add other functionality or observables here
 			};
 			
 			// data
-			c.activityOptions(['-', 'Socializing','Physical', 'Mental', 'Fine motor skills']);
-			c.requirementOptions(['-', 'Have legs','Not be a cucumber', 'Have arms']);
-			c.typeOptions(['-','Indoor','Outdoor']);
+			c.typeOptions(['-', 'Park','Government', 'Restaurant', 'Landmark', 'Attraction', 'Historic', 'Other']);
+			c.ageOptions(['-', '1 year','5 years', '10 years', '20 years', '50 years', '100 years', '100+ years']);
+			c.locationOptions(['-','Louisville','Frankfort', 'Eastern Kentucky', 'Western Kentucky', 'Southern Kentucky', 'Northern Kentucky', 'Central Kentucky']);
+            c.priceOptions(['-', 'Free', 'Cheap', 'Pricey', 'Expensive'])
+            c.outdoorsOptions(['-', 'Yes', 'No', 'Sort of'])
 			c.locations([
-				new locationModel('Towne mall',0,'1704 N Dixie Hwy, Elizabethtown, KY 42701',['Indoor'],[],['Socializing']),
-				new locationModel('Axe play',30,'2004 N Mulberry St, Elizabethtown, KY 42701',['Indoor'],['Have arms'],['Socializing', 'Physical', 'Fine motor skills']),
-				new locationModel('Freeman lake running trails',0,'1921-1999 Ring Rd, Elizabethtown, KY 42701',['Outdoor'],['Have legs'],['Physical']),
-				new locationModel('Hard Knox games',0,'5571 N Dixie Hwy, Elizabethtown, KY 42701',['Indoor'],['Not be a cucumber'],['Socializing', 'Mental', 'Fine motor skills']),
-				new locationModel('The Cornhole Palace',20,'421 E Dixie Ave #102, Elizabethtown, KY 42701',['Indoor'],['Have arms'],['Socializing', 'Fine motor skills']),
-				new locationModel('Vibe Coffee',5,'34 Public Square, Elizabethtown, KY 42701',['Indoor'],['Not be a cucumber'],['Socializing', 'Mental']),
-				new locationModel('History Museum',10,'201 W Dixie Ave, Elizabethtown, KY 42701',['Indoor'],[],['Mental']),
+				new locationModel('Churchill Downs',['Pricey'],['Louisville'],['Attraction'],['100+'],['Sort of']),
+				new locationModel('Mammoth Cave', ['Cheap'], ['Central Kentucky'], ['Park'], ['100+'], ['Yes']),
+				new locationModel('Kentucky Capitol Building', ['Free'], ['Frankfort'], ['Government'], ['100+'], ['No']),
+				new locationModel('My Old Kentucky Home State Park', ['Cheap'], ['Central Kentucky'], ['Park'], ['100+'], ['Yes']),
+				new locationModel('Battle of Duttons Hill Monument', ['Free'], ['Southern Kentucky'], ['Historic'], ['100+'], ['Yes']),
+				new locationModel('Cumberland Falls State Resort Park', ['Free'], ['Eastern Kentucky'], ['Park'], ['100+'], ['Yes']),
+				new locationModel('Carter Caves State Resort Park', ['Free'], ['Eastern Kentucky'], ['Park'], ['100+'], ['Yes']),
+                new locationModel(''),
 			]);
 			
 			// page binding
-			ko.applyBindings(c, $('#content').get(0));
+			ko.applyBindings(c, $('#outermost-div').get(0));
+            c.filter();
 		})();
     </script>
 </body>
